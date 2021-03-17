@@ -1,0 +1,35 @@
+---
+# this playbook will deploy nginx docker container
+- hosts: localhost
+  vars:
+    expose_port: 8081
+    container_name: mynginx
+    image: vkmellon/mynginx:latest
+
+  tasks:
+  - name: add Docker yum repository
+    yum_repository:
+      name: docker-ce
+      baseurl: https://download.docker.com/linux/centos/8/x86_64/stable/
+      gpgcheck: no
+      description: Docker-CE
+
+  - name: Install Docker-CE
+    yum:
+      name: docker-ce
+      state: present
+
+  - name: Ensure that Docker service enabled and running
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+  - name: Start Nginx Docker Container
+    docker_container:
+      name: "{{ container_name }}"
+      image: "{{ image }}"
+      state: started
+      ports:
+      - "{{ expose_port }}:80"
+      container_default_behavior: no_defaults
