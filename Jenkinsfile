@@ -4,7 +4,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    dockerImage = docker.build(vkmellon/mynginx)
+                    dockerImage = docker.build('vkmellon/mynginx')
                 }
             }
         }
