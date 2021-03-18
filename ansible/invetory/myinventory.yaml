@@ -1,0 +1,6 @@
+---
+all:
+  children:
+    my_remote_host:
+      hosts:
+        192.168.88.223:

@@ -1,0 +1,9 @@
+---
+- name: Start Nginx Docker Container
+  docker_container:
+    name: "{{ container_name }}"
+    image: "{{ image }}"
+    state: started
+    ports:
+    - "{{ expose_port }}:{{ container_port }}"
+    container_default_behavior: no_defaults
