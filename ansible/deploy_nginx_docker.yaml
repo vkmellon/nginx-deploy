@@ -4,7 +4,3 @@
   roles:
   - role: install_docker
   - role: start_container
-
-
-
-
